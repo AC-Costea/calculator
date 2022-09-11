@@ -8,11 +8,20 @@ function subtract(a,b){
 
 function multiply(){
     firstNumber=list2[0]
-    lastNumber=list2[list2.length-1]
+    
+    
+    lastNumber=list2[1]
+    if(isNaN(lastNumber)===true){
+        lastNumber=1
+    }
+    
     result=firstNumber*lastNumber
     list2[0]=result
-    list2.splice(1,2)
+
+                
+    list2.splice(1,1)
     console.log(result) 
+    console.log(list2)
 
 }
 
@@ -55,6 +64,8 @@ let fullNumber=0
 let counter=0
 let list2=[]
 let firstNumber=0
+let lastNumber=0
+let listLenght=list2.length
 const numberButtons=document.querySelectorAll("#bt")
 const operatorButtons=document.querySelectorAll("#bt2")
 
