@@ -6,27 +6,54 @@ function subtract(a,b){
     return a-b
 }
 
+function decision(){
+    if(operator==="x"){
+        multiply()
+    }else if(operator==="/"){
+        divide()
+    }
+}
+
+function shiftOperator(){
+    firstOperator=operatorList[0]    
+    firstOperator=operatorList[operatorList.length-1]
+    operatorList[0]=firstOperator    
+}
+
+function removeLastElement(){
+    list2.splice(1,1)
+    console.log(result) 
+    console.log(list2)
+    console.log(operatorList)
+    operatorList.pop()
+}
+
 function multiply(){
+    shiftOperator()
+
     firstNumber=list2[0]
-    
-    
     lastNumber=list2[1]
     if(isNaN(lastNumber)===true){
         lastNumber=1
     }
-    
     result=firstNumber*lastNumber
     list2[0]=result
 
-                
-    list2.splice(1,1)
-    console.log(result) 
-    console.log(list2)
-
+    removeLastElement()
 }
 
-function divide(a,b){
-    return a/b
+function divide(){
+    shiftOperator()
+
+    firstNumber=list2[0]
+    lastNumber=list2[1]
+    if(isNaN(lastNumber)===true){
+        lastNumber=1
+    }
+    result=firstNumber/lastNumber
+    list2[0]=result
+     
+    removeLastElement()      
 }
 
 function getNumbers(e){
@@ -37,28 +64,21 @@ function getNumbers(e){
 }
 
 function operatorSelection(e){
-    counter=list2.length
-    console.log(counter)
-    
     operator=e.target.innerText
+    operatorList.push(operator)
     fullNumber=parseInt(list.join(""))
     nanCheck=isNaN(fullNumber)
-    console.log(nanCheck)
     if(nanCheck===false){
         list2.push(fullNumber)
         list=[]
-        console.log(list2)
     }
     
-    if(counter===1){
-
-        multiply()
-    }
+    decision()
 }
-
+let firstOperator=0
 let list=[]
 let a=0
-
+let operatorList=[]
 let operator=0
 let fullNumber=0
 let counter=0
