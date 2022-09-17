@@ -8,23 +8,22 @@ body{
 .frame{
     display: flex;
     flex-direction: column;
-    
+    align-items: stretch;
     width: 400px;
-    height: 470px;
+    
     border: 3px solid rgb(0, 0, 0);
     border-radius: 5px;
     
 }
 .screen{
-   
+    
     color: aliceblue    ;
-    background-color: rgb(26, 26, 26);
-    height: 80px;
-    width: 95%;
-    font-size: 60px;
-    text-align: right;
+   
+    
+    font-size: 35px;
+    
     border-radius: 2px;
-    padding-right: 20px;
+    
     
 }
 
@@ -73,3 +72,10 @@ button:hover{
 .plus,.minus,.mult,.divide{
     color: rgb(52, 143, 255);
 }
+
+.outerScreen{
+    display:flex;
+    padding-top: 30px;
+    background-color: rgb(26, 26, 26);
+    justify-content: stretch;
+}   

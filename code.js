@@ -84,6 +84,7 @@ function getNumbers(e){
     a=e.target.innerText; 
     console.log(a); 
     list.push(a);
+    showNumber()
 }
 
 function operatorSelection(e){
@@ -99,6 +100,14 @@ function operatorSelection(e){
     decision();
 }
 
+function showNumber(){
+    
+    list3.push(a);
+    fullScreenNumber=list3.join("")
+    
+    screen.textContent=`${fullScreenNumber}`
+}
+
 let firstOperator=0;
 let list=[];
 let a=0;
@@ -110,6 +119,10 @@ let list2=[];
 let firstNumber=0;
 let lastNumber=0;
 let listLenght=list2.length;
+let list3=[]
+let fullScreenNumber=0
+
+const screen=document.querySelector(".screen")
 const numberButtons=document.querySelectorAll("#bt");
 const operatorButtons=document.querySelectorAll("#bt2");
 
