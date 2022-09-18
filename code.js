@@ -33,6 +33,7 @@ function multiply(){
     }
     result=firstNumber*lastNumber;
     list2[0]=result;
+    screen.textContent=`${result}`
 
     shiftOperator();
     removeLastElement();
@@ -47,6 +48,7 @@ function divide(){
     }
     result=firstNumber/lastNumber;
     list2[0]=result;
+    screen.textContent=`${result}`
 
     shiftOperator();
     removeLastElement();      
@@ -61,6 +63,7 @@ function add(){
     }
     result=firstNumber+lastNumber;
     list2[0]=result;
+    screen.textContent=`${result}`
 
     shiftOperator();
     removeLastElement();
@@ -75,6 +78,7 @@ function subtract(){
     }
     result=firstNumber-lastNumber;
     list2[0]=result;
+    screen.textContent=`${result}`
 
     shiftOperator();
     removeLastElement();
@@ -88,6 +92,10 @@ function getNumbers(e){
 }
 
 function operatorSelection(e){
+    if(operatorList[0]==="="){
+        operatorList=[]
+        list2.splice(1,1);
+    }
     operator=e.target.innerText;
     operatorList.push(operator);
     fullNumber=parseInt(list.join(""));
@@ -98,14 +106,20 @@ function operatorSelection(e){
     }
     
     decision();
+    
+    
+    list3=[]
+    counter=0
 }
 
 function showNumber(){
     
-    list3.push(a);
-    fullScreenNumber=list3.join("")
-    
-    screen.textContent=`${fullScreenNumber}`
+    counter+=1
+    if(counter<20){
+        list3.push(a);
+        fullScreenNumber=list3.join("")
+        screen.textContent=`${fullScreenNumber}`
+    }
 }
 
 let firstOperator=0;
@@ -119,13 +133,16 @@ let list2=[];
 let firstNumber=0;
 let lastNumber=0;
 let listLenght=list2.length;
-let list3=[]
-let fullScreenNumber=0
+let list3=[];
+let fullScreenNumber=0;
+
 
 const screen=document.querySelector(".screen")
 const numberButtons=document.querySelectorAll("#bt");
 const operatorButtons=document.querySelectorAll("#bt2");
+const equalButton=document.querySelector(".equal")
 
+equalButton.addEventListener("click",operatorSelection)
 numberButtons.forEach(button=>button.addEventListener("click",getNumbers));
 operatorButtons.forEach(button=>button.addEventListener("click",operatorSelection));
 
