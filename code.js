@@ -1,4 +1,32 @@
+function nanChecker(){
+    if(isNaN(result)===true){
+        list2=[]
+        screen.textContent=`0`
+    }else{
+        screen.textContent=`${result}`
+    }
+}
+
+function equalCheck1(){
+    if(operatorList[0]==="="){
+        operatorList=[]
+        list=[];
+    }
+}
+
+function equalCheck2(){
+    if(operatorList[0]==="="){
+        operatorList=[]
+        list=[];
+        if(isNaN(result)===false){
+            list2[0]=result
+        }
+        
+    }
+}
+
 function decision(){
+    
     if(operatorList[0]==="x"){
         multiply()
     }else if(operatorList[0]==="/"){
@@ -8,6 +36,7 @@ function decision(){
     }else if(operatorList[0]==="-"){
         subtract()
     }
+    
 }
 
 function shiftOperator(){
@@ -25,16 +54,16 @@ function removeLastElement(){
 }
 
 function multiply(){
-
+    
     firstNumber=list2[0];
+    console.log(firstNumber)
     lastNumber=list2[1];
     if(isNaN(lastNumber)===true){
         lastNumber=1
     }
     result=firstNumber*lastNumber;
     list2[0]=result;
-    screen.textContent=`${result}`
-
+    nanChecker();
     shiftOperator();
     removeLastElement();
 }
@@ -48,8 +77,7 @@ function divide(){
     }
     result=firstNumber/lastNumber;
     list2[0]=result;
-    screen.textContent=`${result}`
-
+    nanChecker();
     shiftOperator();
     removeLastElement();      
 }
@@ -63,8 +91,7 @@ function add(){
     }
     result=firstNumber+lastNumber;
     list2[0]=result;
-    screen.textContent=`${result}`
-
+    nanChecker();
     shiftOperator();
     removeLastElement();
 }
@@ -78,8 +105,7 @@ function subtract(){
     }
     result=firstNumber-lastNumber;
     list2[0]=result;
-    screen.textContent=`${result}`
-
+    nanChecker();
     shiftOperator();
     removeLastElement();
 }
@@ -92,24 +118,25 @@ function getNumbers(e){
 }
 
 function operatorSelection(e){
-    if(operatorList[0]==="="){
-        operatorList=[]
-        list2.splice(1,1);
-    }
     operator=e.target.innerText;
     operatorList.push(operator);
+    
+    equalCheck1();
+    
     fullNumber=parseInt(list.join(""));
-    nanCheck=isNaN(fullNumber);
-    if(nanCheck===false){
+    nanVerify=isNaN(fullNumber);
+    console.log("k")
+    if(nanVerify===false){
         list2.push(fullNumber);
         list=[];
+    
     }
-    
     decision();
+    operatorList.splice(1,1)
+    equalCheck2();
+    list3=[];
+    counter=0;
     
-    
-    list3=[]
-    counter=0
 }
 
 function showNumber(){
@@ -117,7 +144,7 @@ function showNumber(){
     counter+=1
     if(counter<20){
         list3.push(a);
-        fullScreenNumber=list3.join("")
+        fullScreenNumber=list3.join("");
         screen.textContent=`${fullScreenNumber}`
     }
 }
@@ -135,7 +162,7 @@ let lastNumber=0;
 let listLenght=list2.length;
 let list3=[];
 let fullScreenNumber=0;
-
+let result=0;
 
 const screen=document.querySelector(".screen")
 const numberButtons=document.querySelectorAll("#bt");
