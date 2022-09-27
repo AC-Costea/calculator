@@ -9,9 +9,10 @@ function nanChecker(){
 
 function equalCheck1(){
     if(operatorList[0]==="="){
-        operatorList=[]
+        operatorList=[];
         list=[];
     }
+    
 }
 
 function equalCheck2(){
@@ -23,18 +24,20 @@ function equalCheck2(){
         }
         
     }
+    
 }
 
 function decision(){
-    
-    if(operatorList[0]==="x"){
-        multiply()
-    }else if(operatorList[0]==="/"){
-        divide()
-    }else if(operatorList[0]==="+"){
-        add()
-    }else if(operatorList[0]==="-"){
-        subtract()
+    if(list2.length>0){
+        if(operatorList[0]==="x"){
+            multiply()
+        }else if(operatorList[0]==="/"){
+            divide()
+        }else if(operatorList[0]==="+"){
+            add()
+        }else if(operatorList[0]==="-"){
+            subtract()
+        }
     }
     
 }
@@ -125,7 +128,6 @@ function operatorSelection(e){
     
     fullNumber=parseInt(list.join(""));
     nanVerify=isNaN(fullNumber);
-    console.log("k")
     if(nanVerify===false){
         list2.push(fullNumber);
         list=[];
@@ -149,6 +151,13 @@ function showNumber(){
     }
 }
 
+function clear(){
+    list=[];
+    list2=[];
+    list3=[];
+    operatorList=[];
+    screen.textContent=`0`;
+}
 let firstOperator=0;
 let list=[];
 let a=0;
@@ -164,12 +173,18 @@ let list3=[];
 let fullScreenNumber=0;
 let result=0;
 
+
 const screen=document.querySelector(".screen")
 const numberButtons=document.querySelectorAll("#bt");
 const operatorButtons=document.querySelectorAll("#bt2");
 const equalButton=document.querySelector(".equal")
+const clearButton=document.querySelector(".c")
 
-equalButton.addEventListener("click",operatorSelection)
+clearButton.addEventListener("click",clear);
+equalButton.addEventListener("click",operatorSelection);
 numberButtons.forEach(button=>button.addEventListener("click",getNumbers));
 operatorButtons.forEach(button=>button.addEventListener("click",operatorSelection));
 
+//stop making zeros show up in the fron of the number on  the screen//
+
+//bug with equal sign ,it messup the order of operations in certain situations//
