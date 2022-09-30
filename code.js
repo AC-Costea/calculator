@@ -17,8 +17,9 @@ function equalCheck1(){
 
 function equalCheck2(){
     if(operatorList[0]==="="){
-        operatorList=[]
+        operatorList=[];
         list=[];
+        list2=[];
         if(isNaN(result)===false){
             list2[0]=result
         }
@@ -117,7 +118,7 @@ function getNumbers(e){
     a=e.target.innerText; 
     console.log(a); 
     list.push(a);
-    showNumber()
+    showNumber();
 }
 
 function operatorSelection(e){
@@ -134,7 +135,7 @@ function operatorSelection(e){
     
     }
     decision();
-    operatorList.splice(1,1)
+    operatorList.splice(1,1);
     equalCheck2();
     list3=[];
     counter=0;
@@ -174,17 +175,14 @@ let fullScreenNumber=0;
 let result=0;
 
 
-const screen=document.querySelector(".screen")
+const screen=document.querySelector(".screen");
 const numberButtons=document.querySelectorAll("#bt");
 const operatorButtons=document.querySelectorAll("#bt2");
-const equalButton=document.querySelector(".equal")
-const clearButton=document.querySelector(".c")
+const equalButton=document.querySelector(".equal");
+const clearButton=document.querySelector(".c");
 
 clearButton.addEventListener("click",clear);
 equalButton.addEventListener("click",operatorSelection);
 numberButtons.forEach(button=>button.addEventListener("click",getNumbers));
 operatorButtons.forEach(button=>button.addEventListener("click",operatorSelection));
 
-//stop making zeros show up in the fron of the number on  the screen//
-
-//bug with equal sign ,it messup the order of operations in certain situations//
